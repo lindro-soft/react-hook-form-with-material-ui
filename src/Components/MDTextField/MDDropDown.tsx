@@ -23,17 +23,24 @@ const MDDropDown: React.FC<PropTypes> = (props: PropTypes) => {
   return (
     <>
       <Controller
-        as={
+        control={props.control}
+        render={({ onChange }) => (
           <TextField
-            select
             label={props.label}
-            margin="normal"
+            select
+            margin="none"
             inputRef={inputRef}
             variant="outlined"
-            value={props.value}
             fullWidth
+            helperText={props.error && props.error.message}
             error={props.error ? true : false}
+            onChange={(event) => {
+              props.onChangeSetValue(event.target.value);
+              onChange(event.target.value);
+            }}
+            value={props.value}
           >
+            {" "}
             {props.defaultItem && (
               <MenuItem value="-1">{props.defaultItem}</MenuItem>
             )}
@@ -41,25 +48,18 @@ const MDDropDown: React.FC<PropTypes> = (props: PropTypes) => {
               <MenuItem value={item.code}>{item.value}</MenuItem>
             ))}
           </TextField>
-        }
+        )}
         name={props.name}
-        control={props.control}
-        onFocus={() => {
-          inputRef.current?.focus();
-        }}
-        onChange={([event]) => {
-          props.onChangeSetValue(event.target.value);
-          return event.target.value;
-        }}
-        error={props.error ? true : false}
-        defaultValue={props.value}
         rules={{
           validate: (value) => {
             return value !== "-1" ? true : "Please select an item";
           },
         }}
+        defaultValue={props.value}
+        onFocus={() => {
+          inputRef.current?.focus();
+        }}
       />
-      {props.error && <span>{props.error.message}</span>}
     </>
   );
 };

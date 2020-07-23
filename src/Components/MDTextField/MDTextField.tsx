@@ -1,11 +1,11 @@
 import React, { useRef } from "react";
 import { TextField } from "@material-ui/core";
+import { Controller } from "react-hook-form";
 import {
-  Controller,
-  ValidationOption,
+  ValidationRule,
   Validate,
   ValidationValueMessage,
-} from "react-hook-form";
+} from "react-hook-form/dist/types/form";
 
 interface PropTypes {
   name: string;
@@ -14,28 +14,12 @@ interface PropTypes {
   error: any;
   rules?:
     | Partial<{
-        required:
-          | string
-          | boolean
-          | React.ReactElement<
-              any,
-              | string
-              | ((
-                  props: any
-                ) => React.ReactElement<
-                  any,
-                  | string
-                  | any
-                  | (new (props: any) => React.Component<any, any, any>)
-                > | null)
-              | (new (props: any) => React.Component<any, any, any>)
-            >
-          | ValidationValueMessage<boolean>;
-        min: ValidationOption<React.ReactText>;
-        max: ValidationOption<React.ReactText>;
-        maxLength: ValidationOption<React.ReactText>;
-        minLength: ValidationOption<React.ReactText>;
-        pattern: ValidationOption<RegExp>;
+        required: string | boolean | ValidationValueMessage<boolean>;
+        min: ValidationRule<React.ReactText>;
+        max: ValidationRule<React.ReactText>;
+        maxLength: ValidationRule<React.ReactText>;
+        minLength: ValidationRule<React.ReactText>;
+        pattern: ValidationRule<RegExp>;
         validate: Validate | Record<string, Validate>;
       }>
     | undefined;
@@ -48,31 +32,30 @@ const MDTextField: React.FC<PropTypes> = (props: PropTypes) => {
   return (
     <>
       <Controller
-        as={
+        control={props.control}
+        render={({ onChange }) => (
           <TextField
             label={props.label}
             margin="normal"
             inputRef={inputRef}
             variant="outlined"
-            value={props.value}
             fullWidth
+            helperText={props.error && props.error.message}
             error={props.error ? true : false}
+            onChange={(event) => {
+              props.onChangeSetValue(event.target.value);
+              onChange(event.target.value);
+            }}
+            value={props.value}
           />
-        }
+        )}
         name={props.name}
-        control={props.control}
+        rules={props.rules}
+        defaultValue={props.value}
         onFocus={() => {
           inputRef.current?.focus();
         }}
-        onChange={([event]) => {
-          props.onChangeSetValue(event.target.value);
-          return event.target.value;
-        }}
-        error={props.error ? true : false}
-        defaultValue={props.value}
-        rules={props.rules}
       />
-      {props.error && <span>{props.error.message}</span>}
     </>
   );
 };
