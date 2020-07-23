@@ -4,7 +4,13 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 I did this test project to learn how to do basic validation of Material-UI components with react-hook-form.
 
-for example an input text box and a dropdown menu, there might be better ways of doing this, but it works :)
+I did this so far:
+e-mail validation
+dropdown validation
+number validation
+required text validation
+
+There might be better ways of doing this, but it works :)
 
 ## Available Scripts
 
