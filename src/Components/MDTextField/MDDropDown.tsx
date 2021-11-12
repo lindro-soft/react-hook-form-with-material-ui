@@ -28,7 +28,7 @@ const MDDropDown: React.FC<PropTypes> = (props: PropTypes) => {
           <TextField
             label={props.label}
             select
-            margin="none"
+            margin="normal"
             inputRef={inputRef}
             variant="outlined"
             fullWidth
@@ -42,10 +42,14 @@ const MDDropDown: React.FC<PropTypes> = (props: PropTypes) => {
           >
             {" "}
             {props.defaultItem && (
-              <MenuItem value="-1">{props.defaultItem}</MenuItem>
+              <MenuItem value="-1" key="-1">
+                {props.defaultItem}
+              </MenuItem>
             )}
             {props.items.map((item) => (
-              <MenuItem value={item.code}>{item.value}</MenuItem>
+              <MenuItem value={item.code} key={item.code}>
+                {item.value}
+              </MenuItem>
             ))}
           </TextField>
         )}

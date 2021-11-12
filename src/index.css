@@ -12,3 +12,65 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.tabLabel {
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  background-color: #3f51b5;
+  padding: 10px;
+  color: white;
+  border: 1px solid black;
+  border-bottom: 0px;
+  font-size: 20px;
+}
+
+.tab-list {
+  background-color: #3f51b5;
+  border: 1px solid black;
+  border-top: 0px;
+  padding-left: 0;
+  margin: 0px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.tab-list-item {
+  color: white;
+  display: inline-block;
+  list-style: none;
+  margin-bottom: -1px;
+  padding: 0.5rem 0.75rem;
+  cursor: pointer;
+}
+
+.tab-list-item:first-child {
+  margin-left: 10px;
+}
+
+.tab-list-active {
+  color: black;
+  background-color: white;
+  border: solid black;
+  border-width: 1px 1px 0 1px;
+}
+
+ul {
+  line-height: 30px;
+}
+
+h1 {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  padding: 20px;
+  margin: 0px;
+  font-size: 30px;
+}
+
+a {
+  color: black;
+}
+
+.tab-content {
+  padding: 10px;
+  background-color: white;
+  border: 1px solid black;
+  border-top-width: 0px;
+}
