@@ -30,6 +30,7 @@ const MDDropDown: React.FC<PropTypes> = (props: PropTypes) => {
             select
             margin="normal"
             inputRef={inputRef}
+            size="small"
             variant="outlined"
             fullWidth
             helperText={props.error && props.error.message}

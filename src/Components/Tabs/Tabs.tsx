@@ -2,7 +2,7 @@ import React, { ReactElement, useEffect, useState } from "react";
 import Tab from "./Tab";
 
 interface PropType {
-  defaultTab?: string;
+  defaultTab?: number;
   labels?: string[];
   children?: ReactElement[];
 }
@@ -10,7 +10,7 @@ interface PropType {
 const Tabs = (props: PropType): ReactElement<PropType> => {
   const [activeTab, setActiveTab] = useState(props.defaultTab);
 
-  const onClickTabItem = (tab: string) => {
+  const onClickTabItem = (tab: number) => {
     setActiveTab(tab);
   };
 
@@ -23,16 +23,22 @@ const Tabs = (props: PropType): ReactElement<PropType> => {
   useEffect(() => {
     if (props.children) {
       let tabErrors: boolean[] = [];
-
+      //let tabChanged: boolean = false;
       for (var i = 0; i < props.children?.length; i++) {
         tabErrors.push(false);
-        var child = props.children[i];
-        if (child.props.children) {
-          for (var u = 0; u < child.props.children.length; u++) {
-            var grandChild = child.props.children[u];
+        var tabDiv = props.children[i];
+        if (tabDiv.props.children) {
+          for (var u = 0; u < tabDiv.props.children.length; u++) {
+            var tabDivChild = tabDiv.props.children[u];
 
-            if (grandChild.props && grandChild.props.error) {
+            if (tabDivChild.props && tabDivChild.props.error) {
               tabErrors[i] = true;
+              // if (!tabChanged) {
+              //   tabChanged = true;
+              //   if (activeTab && activeTab > i) {
+              //     setActiveTab(i);
+              //   }
+              // }
             }
           }
         }
@@ -44,7 +50,7 @@ const Tabs = (props: PropType): ReactElement<PropType> => {
   const tabContent = props.children
     ? props.children.map((child, i) => {
         if (props.labels) {
-          if (activeTab === props.labels[i]) {
+          if (activeTab === i) {
             return React.cloneElement(child, {
               key: i,
             });
@@ -66,9 +72,10 @@ const Tabs = (props: PropType): ReactElement<PropType> => {
         {props.labels?.map((label, i) => {
           return (
             <Tab
-              activeTab={activeTab ? activeTab : ""}
+              activeTab={activeTab ? activeTab : 0}
               key={label}
               label={label}
+              index={i}
               error={errorsInTabs ? errorsInTabs[i] : false}
               onClick={onClickTabItem}
             />

@@ -29,8 +29,6 @@ function FormTest() {
       console.log("Email error");
     }
   }, [errors]);
-  const [tabs] = useState<string[]>(["Test1", "Test2"]);
-  const [defaultTab] = useState<string | undefined>("Test1");
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -45,7 +43,10 @@ function FormTest() {
         </Toolbar>
       </AppBar>
       <br />
-      <Tabs defaultTab={defaultTab} labels={tabs}>
+      <Tabs
+        defaultTab={0}
+        labels={["Dropdown + E-mail", "Text", "Number in Range"]}
+      >
         <div>
           <MDDropDown
             name="dropDownInput"
@@ -75,26 +76,6 @@ function FormTest() {
                   ? true
                   : "Please enter a valid e-mail address";
               },
-            }}
-            control={control}
-          />
-          <MDTextField
-            name="numberInput"
-            error={errors.numberInput}
-            label="Number in the range 1-10"
-            value={numberValue}
-            onChangeSetValue={setNumberValue}
-            rules={{
-              required: { message: "This field is required", value: true },
-              min: {
-                message: "The number should be minimum 1 and maximum 10",
-                value: 1,
-              },
-              max: {
-                message: "The number should be minimum 1 and maximum 10",
-                value: 10,
-              },
-              pattern: { value: /[1-9]/, message: "Only numbers are allowed" },
             }}
             control={control}
           />
@@ -129,6 +110,29 @@ function FormTest() {
                 message: "Shortname should be minimum 2 characters",
               },
             }}
+          />
+        </div>
+        <div>
+          {" "}
+          <MDTextField
+            name="numberInput"
+            error={errors.numberInput}
+            label="Number in the range 1-10"
+            value={numberValue}
+            onChangeSetValue={setNumberValue}
+            rules={{
+              required: { message: "This field is required", value: true },
+              min: {
+                message: "The number should be minimum 1 and maximum 10",
+                value: 1,
+              },
+              max: {
+                message: "The number should be minimum 1 and maximum 10",
+                value: 10,
+              },
+              pattern: { value: /[1-9]/, message: "Only numbers are allowed" },
+            }}
+            control={control}
           />
         </div>
       </Tabs>

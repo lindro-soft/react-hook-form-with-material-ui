@@ -37,6 +37,7 @@ const MDTextField: React.FC<PropTypes> = (props: PropTypes) => {
           <TextField
             label={props.label}
             margin="normal"
+            size="small"
             inputRef={inputRef}
             variant="outlined"
             fullWidth
