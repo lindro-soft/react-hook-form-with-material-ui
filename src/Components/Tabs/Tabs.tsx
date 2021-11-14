@@ -4,7 +4,8 @@ import styles from "./Tabs.module.scss";
 
 interface PropType {
   defaultTab?: number;
-  labels?: string[];
+  label: string;
+  tabLabels?: string[];
   children?: ReactElement[];
 }
 
@@ -50,7 +51,7 @@ const Tabs = (props: PropType): ReactElement<PropType> => {
 
   const tabContent = props.children
     ? props.children.map((child, i) => {
-        if (props.labels) {
+        if (props.tabLabels) {
           if (activeTab === i) {
             return React.cloneElement(child, {
               key: i,
@@ -68,9 +69,9 @@ const Tabs = (props: PropType): ReactElement<PropType> => {
 
   return (
     <div>
-      <div className={styles.tabLabel}>Tab group</div>
+      <div className={styles.tabLabel}>{props.label}</div>
       <ol className={styles.tabList}>
-        {props.labels?.map((label, i) => {
+        {props.tabLabels?.map((label, i) => {
           return (
             <Tab
               activeTab={activeTab ? activeTab : 0}

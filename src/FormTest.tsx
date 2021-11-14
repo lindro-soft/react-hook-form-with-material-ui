@@ -32,20 +32,10 @@ function FormTest() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <AppBar
-        position="static"
-        style={{ borderRadius: "4px", boxShadow: "none" }}
-      >
-        <Toolbar>
-          <Typography variant="h6" noWrap>
-            react-hook-form + Material-UI
-          </Typography>
-        </Toolbar>
-      </AppBar>
-      <br />
       <Tabs
+        label="react-hook-form + Material-UI"
         defaultTab={0}
-        labels={["Dropdown + E-mail", "Text", "Number in Range"]}
+        tabLabels={["Dropdown + E-mail", "Text", "Number in Range"]}
       >
         <div>
           <MDDropDown
