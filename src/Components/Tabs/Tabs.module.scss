@@ -1,0 +1,40 @@
+@import "./_variables.scss";
+
+.tabLabel {
+  border-top-right-radius: $borderRadius;
+  border-top-left-radius: $borderRadius;
+  background-color: #3f51b5;
+  padding: 15px;
+  color: white;
+  border: 1px solid black;
+  border-bottom: 0px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.tabList {
+  background-color: #3f51b5;
+  border: 1px solid #3f51b5;
+  border-right-color: black;
+  border-left-color: black;
+  border-top: 0px;
+  padding-left: 0;
+  margin: 0px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.tabContent {
+  background-color: #3f51b5;
+  border: 1px solid black;
+  border-top-width: 0px;
+  border-bottom-left-radius: $borderRadius;
+  border-bottom-right-radius: $borderRadius;
+}
+
+.tabContentInner {
+  padding: $borderRadius;
+  background-color: white;
+  border-bottom-left-radius: $borderRadius;
+  border-bottom-right-radius: $borderRadius;
+  border-top-right-radius: $borderRadius;
+}

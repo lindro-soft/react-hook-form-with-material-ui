@@ -1,5 +1,6 @@
 import React, { ReactElement } from "react";
 import img_red_dot from "./red_dot.png";
+import styles from "./Tab.module.scss";
 
 interface PropType {
   activeTab: number;
@@ -15,14 +16,14 @@ const Tab = (props: PropType): ReactElement => {
     onClick(index);
   };
 
-  let className = "tab-list-item";
+  let className = styles.tabListItem;
 
   if (props.activeTab === props.index) {
-    className += " tab-list-active";
+    className += " " + styles.tabListActive;
   }
 
   if (props.error) {
-    className += " errorDot";
+    className += " " + styles.errorDot;
   }
 
   return (

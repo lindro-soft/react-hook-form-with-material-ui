@@ -1,11 +1,11 @@
 import React, { useRef } from "react";
 import { TextField } from "@material-ui/core";
-import { Controller } from "react-hook-form";
 import {
-  ValidationRule,
+  Controller,
   Validate,
+  ValidationRule,
   ValidationValueMessage,
-} from "react-hook-form/dist/types/form";
+} from "react-hook-form";
 
 interface PropTypes {
   name: string;

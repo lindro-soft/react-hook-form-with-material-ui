@@ -8,61 +8,9 @@ body {
   padding: 20px;
 }
 
-:root {
-  --border-radius: 15px;
-}
-
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
-}
-
-.tabLabel {
-  border-top-right-radius: var(--border-radius);
-  border-top-left-radius: var(--border-radius);
-  background-color: #3f51b5;
-  padding: 10px;
-  color: white;
-  border: 1px solid black;
-  border-bottom: 0px;
-  font-size: 20px;
-  font-weight: bold;
-}
-
-.tab-list {
-  background-color: #3f51b5;
-  border: 1px solid black;
-  border-top: 0px;
-  padding-left: 0;
-  margin: 0px;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-}
-
-.tab-list-item {
-  border-top-right-radius: var(--border-radius);
-  border-top-left-radius: var(--border-radius);
-  color: white;
-  display: inline-block;
-  list-style: none;
-  margin-bottom: -1px;
-  background-color: #353f79;
-  padding: 0.5rem 0.75rem;
-  cursor: pointer;
-  border: solid black;
-  border-width: 1px 1px 0 1px;
-  min-width: 100px;
-  text-align: center;
-}
-
-.tab-list-item:first-child {
-  margin-left: -1px;
-}
-
-.tab-list-active {
-  color: black;
-  background-color: white;
-  border: solid black;
-  border-width: 1px 1px 0 1px;
 }
 
 ul {
@@ -78,13 +26,4 @@ h1 {
 
 a {
   color: black;
-}
-
-.tab-content {
-  padding: 10px;
-  background-color: white;
-  border: 1px solid black;
-  border-top-width: 0px;
-  border-bottom-left-radius: var(--border-radius);
-  border-bottom-right-radius: var(--border-radius);
 }

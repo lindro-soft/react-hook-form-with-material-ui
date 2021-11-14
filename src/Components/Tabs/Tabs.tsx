@@ -1,5 +1,6 @@
 import React, { ReactElement, useEffect, useState } from "react";
 import Tab from "./Tab";
+import styles from "./Tabs.module.scss";
 
 interface PropType {
   defaultTab?: number;
@@ -66,9 +67,9 @@ const Tabs = (props: PropType): ReactElement<PropType> => {
     : undefined;
 
   return (
-    <div className="tabs">
-      <div className="tabLabel">Tab group</div>
-      <ol className="tab-list">
+    <div>
+      <div className={styles.tabLabel}>Tab group</div>
+      <ol className={styles.tabList}>
         {props.labels?.map((label, i) => {
           return (
             <Tab
@@ -82,7 +83,9 @@ const Tabs = (props: PropType): ReactElement<PropType> => {
           );
         })}
       </ol>
-      <div className="tab-content">{tabContent}</div>
+      <div className={styles.tabContent}>
+        <div className={styles.tabContentInner}>{tabContent}</div>
+      </div>
     </div>
   );
 };
