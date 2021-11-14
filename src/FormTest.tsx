@@ -33,7 +33,7 @@ function FormTest() {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <Tabs
-        label="react-hook-form + Material-UI"
+        label="react-hook-form + Material-UI + Jæwer Tabs"
         defaultTab={0}
         tabLabels={["Dropdown + E-mail", "Text", "Number in Range"]}
       >
