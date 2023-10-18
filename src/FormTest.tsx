@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { Button, Toolbar, Typography, AppBar } from "@material-ui/core";
 import MDTextField from "./Components/MDTextField/MDTextField";
 import MDDropDown from "./Components/MDTextField/MDDropDown";
 import Tabs from "./Components/Tabs/Tabs";
+import Button from "@mui/material/Button";
 
 function FormTest() {
-  const { handleSubmit, errors, control } = useForm();
+  const {
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm();
   const onSubmit = (data: Record<string, any>) =>
     alert("SUBMIT\n" + JSON.stringify(object, null, 2));
 
@@ -59,7 +63,7 @@ function FormTest() {
             onChangeSetValue={setEmailAddress}
             rules={{
               required: { value: true, message: "This field is required" },
-              validate: (value) => {
+              validate: (value: any) => {
                 const re =
                   /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
                 return re.test(String(value).toLowerCase())

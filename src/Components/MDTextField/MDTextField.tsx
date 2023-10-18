@@ -1,11 +1,6 @@
-import React, { useRef } from "react";
-import { TextField } from "@material-ui/core";
-import {
-  Controller,
-  Validate,
-  ValidationRule,
-  ValidationValueMessage,
-} from "react-hook-form";
+import TextField from "@mui/material/TextField";
+import React, { useEffect, useRef } from "react";
+import { Controller, FieldValues, RegisterOptions } from "react-hook-form";
 
 interface PropTypes {
   name: string;
@@ -13,33 +8,36 @@ interface PropTypes {
   value: any;
   error: any;
   rules?:
-    | Partial<{
-        required: string | boolean | ValidationValueMessage<boolean>;
-        min: ValidationRule<React.ReactText>;
-        max: ValidationRule<React.ReactText>;
-        maxLength: ValidationRule<React.ReactText>;
-        minLength: ValidationRule<React.ReactText>;
-        pattern: ValidationRule<RegExp>;
-        validate: Validate | Record<string, Validate>;
-      }>
+    | Omit<
+        RegisterOptions<FieldValues, string>,
+        "disabled" | "valueAsNumber" | "valueAsDate" | "setValueAs"
+      >
     | undefined;
   control: any;
   onChangeSetValue: (value: any) => void;
 }
 
 const MDTextField: React.FC<PropTypes> = (props: PropTypes) => {
-  let inputRef = useRef<HTMLDivElement>(null);
+  let inputRef = useRef<HTMLDivElement>(document.createElement("div"));
+  useEffect(() => {
+    if (props.error) {
+      inputRef.current.focus();
+    }
+  });
   return (
     <>
       <Controller
         control={props.control}
-        render={({ onChange }) => (
+        render={({ field: { onChange } }) => (
           <TextField
             label={props.label}
             margin="normal"
             size="small"
             inputRef={inputRef}
             variant="outlined"
+            onFocus={() => {
+              inputRef.current?.focus();
+            }}
             fullWidth
             helperText={props.error && props.error.message}
             error={props.error ? true : false}
@@ -53,9 +51,6 @@ const MDTextField: React.FC<PropTypes> = (props: PropTypes) => {
         name={props.name}
         rules={props.rules}
         defaultValue={props.value}
-        onFocus={() => {
-          inputRef.current?.focus();
-        }}
       />
     </>
   );
