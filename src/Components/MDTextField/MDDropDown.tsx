@@ -1,6 +1,6 @@
 import { MenuItem } from "@mui/material";
 import TextField from "@mui/material/TextField";
-import React, { useEffect, useRef } from "react";
+import React from "react";
 
 import { Controller } from "react-hook-form";
 
@@ -21,28 +21,19 @@ interface PropTypes {
 }
 
 const MDDropDown: React.FC<PropTypes> = (props: PropTypes) => {
-  let inputRef = useRef<HTMLDivElement>(document.createElement("div"));
-  useEffect(() => {
-    if (props.error) {
-      inputRef.current.focus();
-    }
-  });
   return (
     <>
       <Controller
         control={props.control}
-        render={({ field: { onChange } }) => (
+        render={({ field: { onChange, ref } }) => (
           <TextField
             label={props.label}
             select
             margin="normal"
-            inputRef={inputRef}
+            inputRef={ref}
             size="small"
             variant="outlined"
             fullWidth
-            onFocus={() => {
-              inputRef.current?.focus();
-            }}
             helperText={props.error && props.error.message}
             error={props.error ? true : false}
             onChange={(event) => {

@@ -1,5 +1,5 @@
 import TextField from "@mui/material/TextField";
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import { Controller, FieldValues, RegisterOptions } from "react-hook-form";
 
 interface PropTypes {
@@ -18,26 +18,17 @@ interface PropTypes {
 }
 
 const MDTextField: React.FC<PropTypes> = (props: PropTypes) => {
-  let inputRef = useRef<HTMLDivElement>(document.createElement("div"));
-  useEffect(() => {
-    if (props.error) {
-      inputRef.current.focus();
-    }
-  });
   return (
     <>
       <Controller
         control={props.control}
-        render={({ field: { onChange } }) => (
+        render={({ field: { onChange, ref } }) => (
           <TextField
             label={props.label}
             margin="normal"
             size="small"
-            inputRef={inputRef}
+            inputRef={ref}
             variant="outlined"
-            onFocus={() => {
-              inputRef.current?.focus();
-            }}
             fullWidth
             helperText={props.error && props.error.message}
             error={props.error ? true : false}
