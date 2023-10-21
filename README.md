@@ -10,6 +10,8 @@ dropdown validation
 number validation
 required text validation
 
+Added tabs that show validation errors and automatically switch tab to first tab with error, when submit button is clicked.
+
 There might be better ways of doing this, but it works :)
 
 ## Available Scripts
