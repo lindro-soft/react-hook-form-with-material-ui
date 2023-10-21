@@ -5,11 +5,11 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 I did this test project to learn how to do basic validation of Material-UI components with react-hook-form.
 
 I did this so far:
-*e-mail validation
-*dropdown validation
-*number validation
-*required text validation
-*tabs that show validation errors and automatically switch tab to first tab with error, when submit button is clicked.
+* e-mail validation
+* dropdown validation
+* number validation
+* required text validation
+* tabs that shows validation errors and automatically switch tab to first tab with error, when submit button is clicked.
 
 There might be better ways of doing this, but it works :)
 
