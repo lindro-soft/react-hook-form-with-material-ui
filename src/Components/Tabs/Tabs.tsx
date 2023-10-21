@@ -1,16 +1,20 @@
 import React, { ReactElement, useEffect, useState } from "react";
+import { FieldErrors, FieldValues, UseFormSetFocus } from "react-hook-form";
 import Tab from "./Tab";
 import styles from "./Tabs.module.scss";
 
 interface PropType {
   defaultTab?: number;
-  label: string;
   tabLabels?: string[];
   children?: ReactElement[];
+  submitClicks: number;
+  errors: FieldErrors<FieldValues>;
+  setFocus: UseFormSetFocus<FieldValues>;
 }
 
 const Tabs = (props: PropType): ReactElement<PropType> => {
   const [activeTab, setActiveTab] = useState(props.defaultTab);
+  const [localSubmitClicks, setLocalSubmitClicks] = useState(-1);
 
   const onClickTabItem = (tab: number) => {
     setActiveTab(tab);
@@ -22,25 +26,46 @@ const Tabs = (props: PropType): ReactElement<PropType> => {
 
   const [errorsInTabs, setErrorsInTabs] = useState<boolean[]>();
 
+  //Switch tab to first tab with errors
+  useEffect(() => {
+    if (errorsInTabs !== undefined) {
+      for (let i = 0; i < errorsInTabs.length; i++) {
+        if (errorsInTabs[i] && props.submitClicks > localSubmitClicks) {
+          setActiveTab(i);
+          setLocalSubmitClicks(props.submitClicks);
+          break;
+        }
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [errorsInTabs]);
+
+  //Focus on first input with errors when switching tab
+  useEffect(() => {
+    const firstError = (
+      Object.keys(props.errors) as Array<keyof typeof props.errors>
+    ).reduce<keyof typeof props.errors | null>((field, a) => {
+      const fieldKey = field as keyof typeof props.errors;
+      return !!props.errors[fieldKey] ? fieldKey : a;
+    }, null);
+    if (firstError) {
+      props.setFocus(firstError);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activeTab]);
+
+  //Find out which tabs have errors
   useEffect(() => {
     if (props.children) {
       let tabErrors: boolean[] = [];
-      //let tabChanged: boolean = false;
       for (var i = 0; i < props.children?.length; i++) {
         tabErrors.push(false);
         var tabDiv = props.children[i];
         if (tabDiv.props.children) {
           for (var u = 0; u < tabDiv.props.children.length; u++) {
             var tabDivChild = tabDiv.props.children[u];
-
             if (tabDivChild.props && tabDivChild.props.error) {
               tabErrors[i] = true;
-              // if (!tabChanged) {
-              //   tabChanged = true;
-              //   if (activeTab && activeTab > i) {
-              //     setActiveTab(i);
-              //   }
-              // }
             }
           }
         }
@@ -69,7 +94,7 @@ const Tabs = (props: PropType): ReactElement<PropType> => {
 
   return (
     <div>
-      <div className={styles.tabLabel}>{props.label}</div>
+      {/* <div className={styles.tabLabel}>{props.label}</div> */}
       <ol className={styles.tabList}>
         {props.tabLabels?.map((label, i) => {
           return (
@@ -84,9 +109,7 @@ const Tabs = (props: PropType): ReactElement<PropType> => {
           );
         })}
       </ol>
-      <div className={styles.tabContent}>
-        <div className={styles.tabContentInner}>{tabContent}</div>
-      </div>
+      <div className={styles.tabContent}>{tabContent}</div>
     </div>
   );
 };

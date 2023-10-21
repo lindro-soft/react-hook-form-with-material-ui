@@ -1,28 +1,23 @@
 @import "./_variables.scss";
 
 .tabListItem {
-  border-top-right-radius: $borderRadius;
-  border-top-left-radius: $borderRadius;
-  color: white;
+  color: black;
   display: inline-block;
   list-style: none;
-  margin-bottom: -1px;
-  background-color: #353f79;
+  margin-bottom: 0px;
   padding: 0.5rem 0.75rem;
   cursor: pointer;
-  border: solid black;
-  border-width: 1px 1px 0 1px;
   min-width: 100px;
   text-align: center;
 }
 
 .tabListItem:first-child {
-  margin-left: -1px;
+  margin-left: 20px;
 }
 
 .tabListActive {
-  color: black;
-  background-color: white;
+  color: white;
+  background-color: #353f79;
   border: solid black;
   border-width: 1px 1px 0 1px;
 }

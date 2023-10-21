@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import MDTextField from "./Components/MDTextField/MDTextField";
 import MDDropDown from "./Components/MDTextField/MDDropDown";
@@ -10,6 +10,7 @@ function FormTest() {
     handleSubmit,
     control,
     formState: { errors },
+    setFocus,
   } = useForm();
   const onSubmit = (data: Record<string, any>) =>
     alert("SUBMIT\n" + JSON.stringify(object, null, 2));
@@ -19,6 +20,7 @@ function FormTest() {
   const [requiredText, setRequiredText] = useState("");
   const [shortName, setShortName] = useState("");
   const [numberValue, setNumberValue] = useState("");
+  const [submitClicks, setSubmitClicks] = useState(0);
 
   const object = {
     selectedTextCode: selectedValueInDropDown,
@@ -28,18 +30,15 @@ function FormTest() {
     shortName: shortName,
   };
 
-  useEffect(() => {
-    if (errors.emailInput !== undefined) {
-      console.log("Email error");
-    }
-  }, [errors]);
-
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
+      <h1>react-hook-form + Material-UI + Jæwer Tabs</h1>
       <Tabs
-        label="react-hook-form + Material-UI + Jæwer Tabs"
         defaultTab={0}
         tabLabels={["Dropdown + E-mail", "Text", "Number in Range"]}
+        submitClicks={submitClicks}
+        errors={errors}
+        setFocus={setFocus}
       >
         <div>
           <MDDropDown
@@ -137,7 +136,14 @@ function FormTest() {
       <br />
       <br />
 
-      <Button variant="contained" type="submit" color="primary">
+      <Button
+        variant="contained"
+        type="submit"
+        color="primary"
+        onClick={() => {
+          setSubmitClicks(submitClicks + 1);
+        }}
+      >
         Submit
       </Button>
       <br />
