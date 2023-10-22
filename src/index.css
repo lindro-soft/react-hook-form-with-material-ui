@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: white; /* #f0f1f8;*/
 }
 
 code {
@@ -25,4 +26,8 @@ h1 {
 
 a {
   color: black;
+}
+
+.MuiOutlinedInput-input {
+  background-color: white !important;
 }

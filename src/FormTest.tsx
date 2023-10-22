@@ -4,6 +4,7 @@ import MDTextField from "./Components/MDTextField/MDTextField";
 import MDDropDown from "./Components/MDTextField/MDDropDown";
 import Tabs from "./Components/Tabs/Tabs";
 import Button from "@mui/material/Button";
+import { useTheme } from "@mui/material/styles";
 
 function FormTest() {
   const {
@@ -29,10 +30,12 @@ function FormTest() {
     text: requiredText,
     shortName: shortName,
   };
-
+  const theme = useTheme();
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <h1>react-hook-form + Material-UI + Jæwer Tabs</h1>
+      <h1 style={{ color: theme.palette.primary.main }}>
+        react-hook-form + Material-UI + Jæwer Tabs
+      </h1>
       <Tabs
         defaultTab={0}
         tabLabels={["Dropdown + E-mail", "Text", "Number in Range"]}

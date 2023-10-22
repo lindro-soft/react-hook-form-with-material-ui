@@ -1,4 +1,4 @@
-@import "./_variables.scss";
+@import "./_variables.module.scss";
 
 .tabListItem {
   color: black;
@@ -17,7 +17,7 @@
 
 .tabListActive {
   color: white;
-  background-color: #353f79;
+  background-color: $primaryColor /*#353f79*/;
   border: solid black;
   border-width: 1px 1px 0 1px;
 }

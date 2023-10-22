@@ -1,17 +1,18 @@
-@import "./_variables.scss";
+@import "./_variables.module.scss";
 
 .tabList {
   // background-color: #3f51b5;
-  border: 2px solid #3f51b5;
+  border: 3px solid $primaryColor;
   border-top: 0px;
   border-left: 0px;
   border-right: 0px;
   padding-left: 0;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
+  margin: 0px;
 }
 
 .tabContent {
   padding: 20px;
-  background-color: white;
+  background-color: #ecf3f3;
   border-top-width: 0px;
 }
