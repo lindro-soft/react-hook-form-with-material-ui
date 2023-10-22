@@ -129,23 +129,24 @@ function FormTest() {
           />
         </div>
       </Tabs>
+      <div style={{ padding: "20px" }}>
+        <br />
+        <br />
+        <pre>{JSON.stringify(object, null, 2)}</pre>
+        <br />
+        <br />
 
-      <br />
-      <br />
-      <pre>{JSON.stringify(object, null, 2)}</pre>
-      <br />
-      <br />
-
-      <Button
-        variant="contained"
-        type="submit"
-        color="primary"
-        onClick={() => {
-          setSubmitClicks(submitClicks + 1);
-        }}
-      >
-        Submit
-      </Button>
+        <Button
+          variant="contained"
+          type="submit"
+          color="primary"
+          onClick={() => {
+            setSubmitClicks(submitClicks + 1);
+          }}
+        >
+          Submit
+        </Button>
+      </div>
       <br />
     </form>
   );

@@ -94,7 +94,6 @@ const Tabs = (props: PropType): ReactElement<PropType> => {
 
   return (
     <div>
-      {/* <div className={styles.tabLabel}>{props.label}</div> */}
       <ol className={styles.tabList}>
         {props.tabLabels?.map((label, i) => {
           return (
